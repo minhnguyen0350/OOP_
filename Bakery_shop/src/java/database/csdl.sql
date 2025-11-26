@@ -18,9 +18,9 @@ create table banhs(
 );
 
 insert into banhs values
-(null, "Bánh Mousse Măng Cụt Nâu", 500000, 0, 2,"",""),
-(null, "Bánh Mousse", 350000, 20, 2,"",""),
-(null, "Bánh Chuối Socola", 50000, 0, 2,"",""),
+(null, "Bánh Mousse Măng Cụt Nâu", 500000, 0, 2,"giảm giá 10%",""),
+(null, "Bánh Mousse", 350000, 20, 2,"giảm giá 15%",""),
+(null, "Bánh Chuối Socola", 50000, 0, 2,"giảm giá 10%",""),
 (null, "Rainbow Macaron", 50000, 0, 4,"",""),
 (null, "La Dolce Set", 100000, 0, 4,"",""),
 (null, "Bánh Su Kem", 15000, 0, 4,"",""),
