@@ -18,15 +18,15 @@ create table banhs(
 );
 
 insert into banhs values
-(null, "Bánh Mousse Măng Cụt Nâu", 500000, 0, 2,"giảm giá 10%",""),
-(null, "Bánh Mousse", 350000, 20, 2,"giảm giá 15%",""),
-(null, "Bánh Chuối Socola", 50000, 0, 2,"giảm giá 10%",""),
+(null, "Bánh Mousse Măng Cụt Nâu", 500000, 10, 2,"giảm giá 10%",""),
+(null, "Bánh Mousse", 350000, 15, 2,"giảm giá 15%",""),
+(null, "Bánh Chuối Socola", 50000, 10, 2,"giảm giá 10%",""),
 (null, "Rainbow Macaron", 50000, 0, 4,"",""),
 (null, "La Dolce Set", 100000, 0, 4,"",""),
 (null, "Bánh Su Kem", 15000, 0, 4,"",""),
 (null, "Red Velvet Cookies", 55000, 0, 3,"",""),
-(null, "Langue De Chat Cookies", 45000, 20, 4,"",""),
-(null, "Sweet Lady - Sét 16 Bánh", 350000, 15, 4,"","");
+(null, "Langue De Chat Cookies", 45000, 0, 4,"",""),
+(null, "Sweet Lady - Sét 16 Bánh", 350000, 0, 4,"","");
 
 -- tao bảng ảnh banh
 create table banhImages(
