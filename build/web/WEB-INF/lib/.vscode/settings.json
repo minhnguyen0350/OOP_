@@ -1,0 +1,9 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "lib-ext/json-simple-1.1.1.jar",
+        "lib-ext/mysql-connector-j-8.2.0.jar",
+        "lib-ext/jakarta.servlet.jsp.jstl-api-2.0.0.jar",
+        "lib-ext/jakarta.servlet.jsp.jstl-2.0.0.jar"
+    ]
+}
