@@ -10,7 +10,6 @@ package model;
 public class CartItem {
     private Banh banh;
     private int quantity;
-    private Booking book;
 
     public CartItem(Banh banh, int quantity) {
         this.banh = banh;
@@ -36,7 +35,7 @@ public class CartItem {
     public void addQuantity(int amount) {
         this.quantity += amount;
     }
-    public float getSumrawPrice(){
+     public float getSumrawPrice(){
         if (banh==null) return 0;
         float priceBeforesale=banh.getRawPrice();
         return priceBeforesale*quantity;

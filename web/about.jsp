@@ -1,3 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8" isELIgnored="false"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,6 +26,45 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+        .user-profile-box {
+            position: relative;
+            display: flex;           /* Quan trọng: Giúp căn giữa theo chiều dọc */
+            align-items: center;     /* Quan trọng: Căn giữa thẳng hàng với menu */
+            height: 100%;
+            padding-left: 15px;      /* Khoảng cách trái */
+            cursor: pointer;
+        }
+
+        .logout-dropdown {
+            display: none;           /* Mặc định ẩn */
+            position: absolute;
+            top: 100%;
+            left: 0;                 /* Hoặc right: 0 tùy vị trí */
+            background-color: white;
+            padding: 10px 20px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            z-index: 9999;
+            min-width: 150px;
+        }
+
+        .logout-dropdown a {
+            color: #dc3545 !important; /* Màu đỏ cho nút đăng xuất */
+            text-decoration: none;
+            display: block;
+            font-weight: bold;
+        }
+
+        .logout-dropdown a:hover {
+            text-decoration: underline;
+        }
+
+        /* Khi di chuột vào vùng tên thì hiện menu con */
+        .user-profile-box:hover .logout-dropdown {
+            display: block;
+        }
+    </style>
   </head>
   <body>
     <header role="banner">
@@ -54,51 +96,103 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link active" href="about.html">Giới thiệu</a>
+                <a class="nav-link active" href="about.jsp">Giới thiệu</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">Liên hệ</a>
+                <a class="nav-link" href="contact.jsp">Liên hệ</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="cart">Giỏ hàng</a>
               </li>
+              
+            <c:if test="${sessionScope.acc == null}">
               <li class="nav-item dropdown">
-                <a 
-                  class="nav-link dropdown-toggle" 
-                  href="login.html" 
-                  id="navbarDropdown" 
-                  role="button" 
-                  data-toggle="dropdown" 
-                  aria-haspopup="true" 
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
                   aria-expanded="false"
                 >
                   Tài khoản
                 </a>
-  
-                <div class="dropdown-menu dropdown-menu-right login-dropdown" aria-labelledby="navbarDropdown">
+                <div
+                  class="dropdown-menu dropdown-menu-right login-dropdown"
+                  aria-labelledby="navbarDropdown"
+                >
+                  <c:if test="${not empty mess}">
+                    <div
+                      class="alert alert-danger p-2 m-2"
+                      style="font-size: 13px"
+                    >
+                      ${mess}
+                    </div>
+                  </c:if>
+
                   <form class="px-2 py-2" action="login" method="post">
                     <div class="form-group">
-                      <label for="exampleDropdownFormEmail1">Email/Tên đăng nhập</label>
-                      <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+                      <label>Email</label>
+                      <input
+                        type="email"
+                        name="email"
+                        class="form-control"
+                        placeholder="email@example.com"
+                        required
+                      />
                     </div>
                     <div class="form-group">
-                      <label for="exampleDropdownFormPassword1">Mật khẩu</label>
-                      <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Mật khẩu">
+                      <label>Mật khẩu</label>
+                      <input
+                        type="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="Mật khẩu"
+                        required
+                      />
                     </div>
                     <div class="form-check mb-3">
-                      <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                      <label class="form-check-label" for="dropdownCheck">
-                        Ghi nhớ tôi
-                      </label>
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="dropdownCheck"
+                      />
+                      <label class="form-check-label" for="dropdownCheck"
+                        >Ghi nhớ tôi</label
+                      >
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                    <button type="submit" class="btn btn-primary btn-block">
+                      Đăng nhập
+                    </button>
                   </form>
-
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item text-primary" href="dangky.html">Chưa có tài khoản? Đăng ký ngay</a>
-                  <a class="dropdown-item small" href="#">Quên mật khẩu?</a>
+                  <a class="dropdown-item text-primary" href="dangky.html"
+                    >Chưa có tài khoản? Đăng ký ngay</a
+                  >
                 </div>
-              </li>   
+              </li>
+            </c:if>
+
+            <c:if test="${sessionScope.acc != null}">
+              <li class="nav-item">
+                <div class="user-profile-box">
+                  <span
+                    style="font-weight: bold; font-size: 16px; color: #b99365"
+                  >
+                    ${sessionScope.acc.name} &nbsp;
+                    <i class="fa fa-angle-down"></i>
+                  </span>
+
+                  <div class="logout-dropdown">
+                    <a href="logout">
+                      <i class="fa fa-sign-out"></i> Đăng xuất
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </c:if>
+        
             </ul>
           </div>
         </div>

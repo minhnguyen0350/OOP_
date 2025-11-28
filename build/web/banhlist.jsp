@@ -32,53 +32,37 @@
         figure img { width:100%; border-radius:12px 12px 0 0; }
         figure { position:relative; margin:0;}
         figure span { position:absolute; bottom:10px; left:0; background:rgba(0,0,0,0.6); padding:5px 10px; color:#fff; font-weight:bold; }
-
         
-        
-        /* 1. CSS MỚI: Thiết lập vùng chứa tên user và dropdown (COPY TỪ INDEX.JSP) */
+    
         .user-profile-box {
-    /* --------------------------------- */
-    display: flex;          
-    align-items: center;     
-    height: 100%;              
-    /* Đặt padding để khớp với nav-link chuẩn của Bootstrap */
-    padding-top: 0.5rem;    
-    padding-bottom: 0.5rem; 
-    padding-left: 1rem;      
-    padding-right: 0.5rem;  
-    /* --------------------------------- */
-    position: relative;
-    cursor: pointer;
-}
-        .user-profile-box:hover .logout-dropdown {
-            display: block;
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding-left: 15px;
+            cursor: pointer;
         }
         .logout-dropdown {
             display: none;
             position: absolute;
-            right: 0;
-            background-color: #f9f9f9;
-            min-width: 120px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1000; 
-            padding: 5px 0;
-            border-radius: 5px;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            padding: 10px 20px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            z-index: 9999;
+            min-width: 150px;
         }
         .logout-dropdown a {
-            color: #333;
-            padding: 8px 16px;
+            color: #dc3545 !important;
             text-decoration: none;
             display: block;
-            font-size: 14px;
+            font-weight: bold;
         }
-        .logout-dropdown a:hover {
-            background-color: #f1f1f1;
+        .user-profile-box:hover .logout-dropdown {
+            display: block;
         }
-        .login-dropdown {
-            padding: 15px !important;
-            min-width: 280px !important;
-        }
-    
     </style>
 </head>
 <body>
@@ -111,10 +95,10 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="about.html">Giới thiệu</a>
+              <a class="nav-link" href="about.jsp">Giới thiệu</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Liên hệ</a>
+              <a class="nav-link" href="contact.jsp">Liên hệ</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="cart">Giỏ hàng</a>

@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" isELIgnored="false"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,6 +26,37 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+        .user-profile-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding-left: 15px;
+            cursor: pointer;
+        }
+        .logout-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            padding: 10px 20px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            z-index: 9999;
+            min-width: 150px;
+        }
+        .logout-dropdown a {
+            color: #dc3545 !important;
+            text-decoration: none;
+            display: block;
+            font-weight: bold;
+        }
+        .user-profile-box:hover .logout-dropdown {
+            display: block;
+        }
+    </style>
   </head>
   <body>
     <header role="banner">
@@ -54,51 +88,101 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link active" href="about.html">Giới thiệu</a>
+                <a class="nav-link" href="about.jsp">Giới thiệu</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">Liên hệ</a>
+                <a class="nav-link active" href="contact.jsp">Liên hệ</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="cart">Giỏ hàng</a>
               </li>
+               <c:if test="${sessionScope.acc == null}">
               <li class="nav-item dropdown">
-                <a 
-                  class="nav-link dropdown-toggle" 
-                  href="login.html" 
-                  id="navbarDropdown" 
-                  role="button" 
-                  data-toggle="dropdown" 
-                  aria-haspopup="true" 
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
                   aria-expanded="false"
                 >
                   Tài khoản
                 </a>
-  
-                <div class="dropdown-menu dropdown-menu-right login-dropdown" aria-labelledby="navbarDropdown">
+                <div
+                  class="dropdown-menu dropdown-menu-right login-dropdown"
+                  aria-labelledby="navbarDropdown"
+                >
+                  <c:if test="${not empty mess}">
+                    <div
+                      class="alert alert-danger p-2 m-2"
+                      style="font-size: 13px"
+                    >
+                      ${mess}
+                    </div>
+                  </c:if>
+
                   <form class="px-2 py-2" action="login" method="post">
                     <div class="form-group">
-                      <label for="exampleDropdownFormEmail1">Email/Tên đăng nhập</label>
-                      <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+                      <label>Email</label>
+                      <input
+                        type="email"
+                        name="email"
+                        class="form-control"
+                        placeholder="email@example.com"
+                        required
+                      />
                     </div>
                     <div class="form-group">
-                      <label for="exampleDropdownFormPassword1">Mật khẩu</label>
-                      <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Mật khẩu">
+                      <label>Mật khẩu</label>
+                      <input
+                        type="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="Mật khẩu"
+                        required
+                      />
                     </div>
                     <div class="form-check mb-3">
-                      <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                      <label class="form-check-label" for="dropdownCheck">
-                        Ghi nhớ tôi
-                      </label>
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="dropdownCheck"
+                      />
+                      <label class="form-check-label" for="dropdownCheck"
+                        >Ghi nhớ tôi</label
+                      >
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                    <button type="submit" class="btn btn-primary btn-block">
+                      Đăng nhập
+                    </button>
                   </form>
-
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item text-primary" href="dangky.html">Chưa có tài khoản? Đăng ký ngay</a>
-                  <a class="dropdown-item small" href="#">Quên mật khẩu?</a>
+                  <a class="dropdown-item text-primary" href="dangky.html"
+                    >Chưa có tài khoản? Đăng ký ngay</a
+                  >
                 </div>
-              </li>   
+              </li>
+            </c:if>
+
+            <c:if test="${sessionScope.acc != null}">
+              <li class="nav-item">
+                <div class="user-profile-box">
+                  <span
+                    style="font-weight: bold; font-size: 16px; color: #b99365"
+                  >
+                    ${sessionScope.acc.name} &nbsp;
+                    <i class="fa fa-angle-down"></i>
+                  </span>
+
+                  <div class="logout-dropdown">
+                    <a href="logout">
+                      <i class="fa fa-sign-out"></i> Đăng xuất
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </c:if>
             </ul>
           </div>
         </div>
@@ -119,8 +203,8 @@
         >
           <div class="col-md-12 text-center">
             <div class="mb-5 element-animate">
-              <h1>Một chút về Sugar & Smile</h1>
-              <p>Sugar & Smile</p>
+              <h1>Liên hệ với chúng tôi</h1>
+              <p>Chũng tôi luôn sẵn sàng phục vụ bạn</p>
             </div>
           </div>
         </div>
@@ -130,103 +214,63 @@
 
     <section class="site-section">
       <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-4">
-            <div class="heading-wrap element-animate">
-              <h2 class="heading">Lịch sử</h2>
-              <p class="">
-                Sugar & Smile ra đời từ niềm đam mê làm bánh thủ công của chúng
-                tôi. Bắt đầu chỉ từ một gian bếp nhỏ và những mẻ bánh dành tặng
-                bạn bè, tiệm dần lớn lên nhờ sự tin yêu của khách hàng.
-              </p>
-
-              <p>
-                Chúng tôi luôn tin rằng một chiếc bánh ngon không chỉ nằm ở
-                hương vị mà còn trong sự chăm chút từng chi tiết.
-              </p>
-
-              <p>
-                Sugar & Smile luôn nỗ lực mang đến những chiếc bánh tươi ngon,
-                an toàn và chứa đựng sự ấm áp dành cho mọi dịp đặc biệt của bạn.
-              </p>
-            </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h2 class="mb-5">LIÊN HỆ NGAY</h2>
+            <form action="#" method="post">
+              <div class="row">
+                <div class="col-md-12 form-group">
+                  <label for="name">Họ và tên</label>
+                  <input type="text" id="name" class="form-control" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 form-group">
+                  <label for="phone">Số điện thoại</label>
+                  <input type="text" id="phone" class="form-control" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" class="form-control" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 form-group">
+                  <label for="message">Lời nhắn đến chúng tôi</label>
+                  <textarea
+                    name="message"
+                    id="message"
+                    class="form-control"
+                    cols="30"
+                    rows="8"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input
+                    type="submit"
+                    value="Gửi ngay"
+                    class="btn btn-primary"
+                  />
+                </div>
+              </div>
+            </form>
           </div>
           <div class="col-md-1"></div>
-          <div class="col-md-7">
-            <img
-              src="https://media.istockphoto.com/id/586209206/vi/anh/ng%C6%B0%E1%BB%9Di-ph%E1%BB%A5-n%E1%BB%AF-ph%E1%BB%A5c-v%E1%BB%A5-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-m%E1%BB%99t-ti%E1%BB%87m-b%C3%A1nh.jpg?s=170667a&w=0&k=20&c=c5-CRFoOfsZje8z8wL2ab4MZ6O9WVOIHPe_tMt-uCSc="
-              alt="Image placeholder"
-              class="img-md-fluid"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- END section -->
-
-    <section class="site-section bg-light">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md-12 heading-wrap text-center">
-            <h2 class="heading">Nhân viên</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="post-entry">
-              <img
-                src="https://amcollege.edu.vn/wp-content/uploads/2022/06/nghiep-vu-bep-viet-amcollege.jpg"
-                alt="Image placeholder"
-                class="img-fluid"
-              />
-              <div class="body-text">
-                <div class="category">Bếp Trưởng</div>
-                <h3 class="mb-3"><a href="#">Anh Minh</a></h3>
-                <p class="mb-4">
-                  Với hơn 8 năm kinh nghiệm làm bánh Pháp, anh luôn chú trọng
-                  vào chất lượng và hương vị tinh tế, biến mỗi chiếc bánh thành
-                  một tác phẩm nghệ thuật nhỏ.
+          <div class="col-md-5">
+            <p>
+                <p class="mb-5">
+                <img src="https://salesucre.ae/wp-content/uploads/2023/11/1052-1.jpg" alt="" class="img-fluid"/>
                 </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="post-entry">
-              <img
-                src="https://madamehuong.vn/wp-content/uploads/2019/06/madamehuong-723x800.jpg"
-                alt="Image placeholder"
-                class="img-fluid"
-              />
-              <div class="body-text">
-                <div class="category">Bếp phó</div>
-                <h3 class="mb-3"><a href="#">Thu Hương</a></h3>
-                <p class="mb-4">
-                  Chị Hương là người đứng sau những ổ bánh mì thơm nức, vỏ giòn
-                  ruột mềm mà khách hàng yêu thích. Tỉ mỉ, kỷ luật và tận tâm,
-                  chị luôn đảm bảo quy trình làm bánh đạt chuẩn và giữ vững sự
-                  đồng nhất trong chất lượng mỗi ngày.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="post-entry">
-              <img
-                src="https://images.baoangiang.com.vn/image/fckeditor/upload/2023/20231104/images/z4837701228355_332fb590acb9eed46888f83766ec3a10.jpg"
-                alt="Image placeholder"
-                class="img-fluid"
-              />
-              <div class="body-text">
-                <div class="category">Nhân viên tiêu biểu</div>
-                <h3 class="mb-3"><a href="#">Thùy Linh</a></h3>
-                <p class="mb-4">
-                  Linh là gương mặt thân thiện của tiệm, luôn mang lại cảm giác
-                  gần gũi cho mọi khách ghé thăm. Với phong cách phục vụ nhẹ
-                  nhàng và nhiệt tình, Linh giúp khách hàng chọn được chiếc bánh
-                  phù hợp nhất cho từng dịp đặc biệt.
-                </p>
-              </div>
-            </div>
+            
+            <p>
+              Chúng tôi luôn sẵn sàng hỗ trợ và đáp ứng mọi yêu cầu của khách,
+              dù là nhỏ nhất. Nếu bạn thấy hài lòng, hãy nói với mọi người. Nếu
+              bạn chưa hài lòng, hãy nói với chúng tôi!
+            </p>
           </div>
         </div>
       </div>
@@ -254,11 +298,12 @@
       <div class="container">
         <div class="row mb-5">
           <div class="col-md-4">
-            <h3>Số điện thoại liên hệ</h3>
+            <h3>Điện thoại liên hệ</h3>
+
             <p><i class="icon ion-android-call"></i>&nbsp 0323 093 323</p>
           </div>
           <div class="col-md-4">
-            <h3>Liên hệ với chúng tôi</h3>
+            <h3>Kết nối với chúng tôi</h3>
             <p>
               <a href="#" class="pl-0 p-3"
                 ><span class="fa fa-facebook"></span

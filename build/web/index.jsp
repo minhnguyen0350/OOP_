@@ -25,9 +25,11 @@
 
     <link rel="stylesheet" href="css/style.css" />
     <style>
+    /* ... giữ các style cũ nếu có ... */
+
     /* 1. Thiết lập vùng chứa tên user */
     .user-profile-box {
-      position: relative; 
+      position: relative; /* Để nút đăng xuất định vị theo khung này */
       display: flex;
       align-items: center;
       height: 100%;
@@ -37,21 +39,22 @@
 
     /* 2. Style cho menu con chứa nút đăng xuất (Mặc định ẩn) */
     .logout-dropdown {
-      display: none;
+      display: none; /* Ẩn đi */
       position: absolute;
-      top: 100%; 
-      left: 15px;
+      top: 100%; /* Hiện ngay bên dưới tên */
+      left: 16px;
       background-color: white;
-      padding: 10px 20px;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+      padding: 12px 21px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1); /* Tạo bóng đổ cho đẹp */
       border-radius: 4px;
       z-index: 9999;
-      min-width: 120px;
+      min-width: 150px;
+      white-space: nowrap;
     }
 
     /* 3. Style cho nút đăng xuất bên trong */
     .logout-dropdown a {
-      color: #dc3545 !important;
+      color: #dc3545 !important; /* Màu đỏ */
       text-decoration: none;
       font-size: 13px;
       font-weight: bold;
@@ -61,6 +64,8 @@
     .logout-dropdown a:hover {
       text-decoration: underline;
     }
+
+    /* 4. QUAN TRỌNG: Khi di chuột vào vùng tên (.user-profile-box) thì hiện menu (.logout-dropdown) */
     .user-profile-box:hover .logout-dropdown {
       display: block;
     }
@@ -96,10 +101,10 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="about.html">Giới thiệu</a>
+                <a class="nav-link" href="about.jsp">Giới thiệu</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">Liên hệ</a>
+                <a class="nav-link" href="contact.jsp">Liên hệ</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="cart">Giỏ hàng</a>
@@ -197,7 +202,7 @@
                 tình yêu trong từng lớp bánh và từng mùi thơm!
               </p>
               <p>
-                <a href="about.html" class="btn btn-primary btn-sm"
+                <a href="about.jsp" class="btn btn-primary btn-sm"
                   >Tìm hiểu thêm</a
                 >
               </p>

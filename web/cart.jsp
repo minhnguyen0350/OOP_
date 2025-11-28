@@ -13,10 +13,10 @@
 <header role="banner">
     <nav class="navbar navbar-expand-md navbar-dark bg-light">
         <div class="container">
-            <a class="navbar-brand" href="index.html">Sugar & Smile</a>
+            <a class="navbar-brand" href="index.jsp">Sugar & Smile</a>
             <div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
                 <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.jsp">Trang chủ</a></li>
                     <li class="nav-item"><a class="nav-link" href="<%= request.getContextPath() %>/banhlist">Bánh</a></li>
                     <li class="nav-item active"><a class="nav-link" href="<%= request.getContextPath() %>/cart">Giỏ hàng</a></li>
                 </ul>
