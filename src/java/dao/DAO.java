@@ -19,13 +19,12 @@ public class DAO {
     public DAO(){
         String url = "jdbc:mysql://localhost:3306/banh?autoReconnect=true&useSSL=false";
         String username = "root";
-        String password = "anh1234";
+        String password = "mize0305";
         if(con == null){
             try{
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, username,password);
-            } catch(Exception ex){
-                ex.printStackTrace();
+            } catch(ClassNotFoundException | SQLException ex){
             }
         } 
     }

@@ -68,7 +68,7 @@ public class Banh {
         return price * (1 - sale / 100);
     }
     public String getMainImage() {
-        return (images != null && images.size() > 0) ? images.get(0) : "";
+        return (images != null && !images.isEmpty()) ? images.get(0) : "";
     }
     public ArrayList<String> getImages() {
         return images;

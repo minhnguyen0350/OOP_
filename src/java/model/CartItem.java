@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
+
 /**
  *
  * @author anh
@@ -35,7 +36,7 @@ public class CartItem {
     public void addQuantity(int amount) {
         this.quantity += amount;
     }
-     public float getSumrawPrice(){
+    public float getSumrawPrice(){
         if (banh==null) return 0;
         float priceBeforesale=banh.getRawPrice();
         return priceBeforesale*quantity;
@@ -51,5 +52,4 @@ public class CartItem {
         return priceAfterSale * quantity;
     }
 }
-
 
