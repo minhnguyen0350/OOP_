@@ -50,6 +50,7 @@
         <p><b>Email:</b> <%= customer.getEmail() %></p>
         <p><b>SĐT:</b> <%= customer.getTel() %></p>
         <p><b>Thời gian đặt:</b> <%= sdf.format(orderTime) %></p>
+        <p><b>Địa chỉ:</b> <%= customer.getAddress() != null ? customer.getAddress() : "" %></p>
 
         <!-- 1 dropdown trạng thái cho cả đơn -->
         <div class="mb-3">
