@@ -104,7 +104,6 @@
 
             <!-- Hiển thị sản phẩm -->
             <div>
-                <b>Sản phẩm:</b>
                 <ul>
                 <% 
                     if(orderBookings != null){
